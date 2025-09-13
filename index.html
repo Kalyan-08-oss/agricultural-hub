@@ -1,0 +1,294 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Agriculture Hub 🌱</title>
+  <style>
+    /* --- Global Styles --- */
+    body {
+      font-family: Arial, sans-serif;
+      margin: 0; padding: 0;
+      background: #f4fdf4;
+      color: #333;
+      scroll-behavior: smooth;
+    }
+    header {
+      background: #2f8f2f;
+      color: white;
+      padding: 20px;
+      text-align: center;
+      position: sticky;
+      top: 0;
+      z-index: 1000;
+    }
+    header nav a {
+      color: white;
+      margin: 0 12px;
+      text-decoration: none;
+      font-weight: bold;
+    }
+    header nav a:hover {
+      text-decoration: underline;
+    }
+    section {
+      padding: 60px 20px;
+      max-width: 1100px;
+      margin: auto;
+    }
+    h2 {
+      color: #2f8f2f;
+      text-align: center;
+      margin-bottom: 20px;
+    }
+
+    /* --- Hero --- */
+    .hero {
+      text-align: center;
+      padding: 100px 20px;
+      background: url('https://images.unsplash.com/photo-1524592094714-0f0654e20314?auto=format&fit=crop&w=1950&q=80') no-repeat center/cover;
+      color: white;
+    }
+    .hero h1 {
+      font-size: 3em;
+      margin: 0;
+    }
+    .hero p {
+      font-size: 1.2em;
+    }
+
+    /* --- Grid Cards --- */
+    .grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+      gap: 20px;
+    }
+    .card {
+      background: white;
+      border-radius: 10px;
+      overflow: hidden;
+      box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+      transition: 0.3s;
+      cursor: pointer;
+    }
+    .card img {
+      width: 100%;
+      height: 160px;
+      object-fit: cover;
+    }
+    .card h3 {
+      margin: 10px;
+      color: #2f8f2f;
+    }
+    .card p {
+      margin: 5px 10px;
+    }
+    .card:hover {
+      transform: scale(1.03);
+    }
+
+    /* --- Tips --- */
+    .tips {
+      list-style: none;
+      padding: 0;
+      max-width: 700px;
+      margin: auto;
+    }
+    .tips li {
+      background: #e6f7e6;
+      margin: 10px 0;
+      padding: 10px;
+      border-left: 5px solid #2f8f2f;
+    }
+
+    /* --- Contact --- */
+    .contact-form {
+      max-width: 600px;
+      margin: auto;
+      display: flex;
+      flex-direction: column;
+      gap: 15px;
+    }
+    .contact-form input, .contact-form textarea {
+      padding: 10px;
+      border: 2px solid #2f8f2f;
+      border-radius: 5px;
+    }
+    .contact-form button {
+      padding: 10px;
+      background: #2f8f2f;
+      color: white;
+      border: none;
+      border-radius: 5px;
+      cursor: pointer;
+    }
+    .contact-form button:hover {
+      background: #256b25;
+    }
+
+    /* --- Footer --- */
+    footer {
+      text-align: center;
+      padding: 15px;
+      margin-top: 30px;
+      background: #2f8f2f;
+      color: white;
+    }
+
+    /* --- Modal (Crop Details) --- */
+    .modal {
+      display: none;
+      position: fixed;
+      top: 0; left: 0;
+      width: 100%; height: 100%;
+      background: rgba(0,0,0,0.6);
+      justify-content: center;
+      align-items: center;
+      z-index: 2000;
+    }
+    .modal-content {
+      background: white;
+      padding: 20px;
+      border-radius: 10px;
+      max-width: 600px;
+      text-align: center;
+      position: relative;
+    }
+    .modal-content img {
+      width: 100%;
+      height: 200px;
+      object-fit: cover;
+      border-radius: 10px;
+    }
+    .close {
+      position: absolute;
+      top: 10px; right: 15px;
+      font-size: 20px;
+      cursor: pointer;
+      color: red;
+    }
+  </style>
+</head>
+<body>
+
+  <!-- Header -->
+  <header>
+    <h1>🌱 Agriculture Hub</h1>
+    <nav>
+      <a href="#home">Home</a>
+      <a href="#crops">Crops</a>
+      <a href="#tips">Tips</a>
+      <a href="#about">About</a>
+      <a href="#contact">Contact</a>
+    </nav>
+  </header>
+
+  <!-- Hero Section -->
+  <section id="home" class="hero">
+    <h1>Welcome to Agriculture Hub</h1>
+    <p>Your one-stop platform to explore crops, get tips, and learn modern farming.</p>
+  </section>
+
+  <!-- Crops Section -->
+  <section id="crops">
+    <h2>Crops Information</h2>
+    <div class="grid" id="cropGrid"></div>
+  </section>
+
+  <!-- Tips Section -->
+  <section id="tips">
+    <h2>Farming Tips</h2>
+    <ul class="tips">
+      <li>🌿 Use organic manure to improve soil fertility.</li>
+      <li>💧 Practice drip irrigation to save water.</li>
+      <li>🦗 Use bio-pesticides for pest control.</li>
+      <li>🌦️ Check weather forecasts before sowing.</li>
+      <li>🌱 Rotate crops to maintain soil health.</li>
+    </ul>
+  </section>
+
+  <!-- About Section -->
+  <section id="about">
+    <h2>About Us</h2>
+    <p style="max-width:700px;margin:auto;text-align:center;">
+      Agriculture Hub is a simple platform to spread knowledge about crops, sustainable farming, 
+      and modern techniques. Our mission is to empower farmers and agri-enthusiasts with valuable 
+      information and practical resources for a better future.
+    </p>
+  </section>
+
+  <!-- Contact Section -->
+  <section id="contact">
+    <h2>Contact Us</h2>
+    <form class="contact-form">
+      <input type="text" placeholder="Your Name" required>
+      <input type="email" placeholder="Your Email" required>
+      <textarea placeholder="Your Message" required></textarea>
+      <button type="submit">Send Message</button>
+    </form>
+  </section>
+
+  <!-- Footer -->
+  <footer>
+    <p>© 2025 Agriculture Hub | Made with ❤️ for Farmers</p>
+  </footer>
+
+  <!-- Crop Modal -->
+  <div class="modal" id="cropModal">
+    <div class="modal-content">
+      <span class="close" onclick="closeModal()">&times;</span>
+      <img id="modalImg" src="" alt="Crop">
+      <h3 id="modalTitle"></h3>
+      <p id="modalDetails"></p>
+    </div>
+  </div>
+
+  <!-- JavaScript -->
+  <script>
+    const crops = [
+      { name: "Rice", season: "Kharif", soil: "Clayey", water: "High", 
+        img: "https://upload.wikimedia.org/wikipedia/commons/6/6f/Paddy_Field_in_Tamil_Nadu.jpg",
+        details: "Rice is a staple food crop grown in clayey soils with high water requirements." },
+      { name: "Wheat", season: "Rabi", soil: "Loamy", water: "Medium", 
+        img: "https://upload.wikimedia.org/wikipedia/commons/5/58/Wheat_close-up.JPG",
+        details: "Wheat is grown in loamy soils during the Rabi season and requires medium irrigation." },
+      { name: "Maize", season: "Kharif", soil: "Well-drained", water: "Medium", 
+        img: "https://upload.wikimedia.org/wikipedia/commons/7/75/Corn_on_the_cob.jpg",
+        details: "Maize grows well in well-drained soils and is a versatile food and fodder crop." },
+      { name: "Sugarcane", season: "Annual", soil: "Loamy/Clayey", water: "Very High", 
+        img: "https://upload.wikimedia.org/wikipedia/commons/c/c3/Sugarcane_field_in_India.jpg",
+        details: "Sugarcane is an annual crop requiring very high water, grown widely in tropical regions." },
+      { name: "Cotton", season: "Kharif", soil: "Black soil", water: "Low to Medium", 
+        img: "https://upload.wikimedia.org/wikipedia/commons/5/55/Cotton_field_khandwa.jpg",
+        details: "Cotton thrives in black soils during the Kharif season and requires less water than rice." }
+    ];
+
+    const cropGrid = document.getElementById("cropGrid");
+
+    crops.forEach((crop, i) => {
+      const card = document.createElement("div");
+      card.className = "card";
+      card.innerHTML = `
+        <img src="${crop.img}" alt="${crop.name}">
+        <h3>${crop.name}</h3>
+        <p><b>Season:</b> ${crop.season}</p>
+        <p><b>Soil:</b> ${crop.soil}</p>
+        <p><b>Water:</b> ${crop.water}</p>
+      `;
+      card.onclick = () => openModal(crop);
+      cropGrid.appendChild(card);
+    });
+
+    function openModal(crop) {
+      document.getElementById("modalImg").src = crop.img;
+      document.getElementById("modalTitle").innerText = crop.name;
+      document.getElementById("modalDetails").innerText = crop.details;
+      document.getElementById("cropModal").style.display = "flex";
+    }
+    function closeModal() {
+      document.getElementById("cropModal").style.display = "none";
+    }
+  </script>
+
+</body>
+</html>
